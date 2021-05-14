@@ -1,0 +1,4 @@
+class CommonData{
+    
+}
+class CommonFunction{}
