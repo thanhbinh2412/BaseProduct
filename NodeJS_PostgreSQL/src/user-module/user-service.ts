@@ -1,12 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { ApiUrls, DefaultMessage } from '../common/CommonData'
+import { CommonFuntion } from '../common/CommonFunc'
 
 @Injectable()
 export class UserService {
     getUser(): any {
-        var arr = [0, 1]
+        var arr = ApiUrls.apiLogin
         var dtRs = {
             code: 0,
-            data: arr
+            message: DefaultMessage.msgGetDataErrorNotFound,
+            data: CommonFuntion.getDate(3)
         }
         return dtRs;
     }
