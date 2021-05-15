@@ -1,6 +1,6 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import { get } from 'http';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from '../user-service';
+import{UserReqDto} from '../../models/UserModel.dto'
 
 @Controller('user')
 export class UserControllerController {
@@ -9,11 +9,11 @@ export class UserControllerController {
 
     @Get('get')
     getUser() {
-        return this.service.getUser()
+        return "get user"
     }
 
     @Post('post')
-    postUser() {
-        return this.service.getUser()
+    async postUser(@Body() req: UserReqDto) {
+        return this.service.getUser(req)
     }
 }
