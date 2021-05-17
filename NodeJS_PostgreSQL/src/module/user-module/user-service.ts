@@ -12,16 +12,27 @@ export class UserService {
     var dt = [];
     getConnection()
       .query(query)
-        .then((res) => {
-          dt.push(res)
+      .then((data) => {
+        // console.log(data);
+        data.forEach((item) => {
+          dt.push(item);
+        });
+        // console.log('--------');
+        // console.log(dt);
+      })
+      .finally(() => {
+        console.log(dt);
+        var dtRs = {
+          code: 0,
+          message: DefaultMessage.msgGetDataErrorNotFound,
+          data: dt,
+        };
+        console.log('2');
+        console.log(dtRs);
+
+        return dtRs;
       });
 
-    var arr = ApiUrls.apiLogin;
-    var dtRs = {
-      code: 0,
-      message: DefaultMessage.msgGetDataErrorNotFound,
-      data: dt,
-    };
-    return dtRs;
+    console.log('1');
   }
 }
