@@ -8,7 +8,7 @@ async function bootstrap() {
     console.log("Server on: http://localhost:3000");
     var isStatus: boolean = getConnection().isConnected
     if (isStatus) {
-      console.log("DB connect succes");
+      console.log("DB connect success");
     } else {
       console.log("DB error");
       
