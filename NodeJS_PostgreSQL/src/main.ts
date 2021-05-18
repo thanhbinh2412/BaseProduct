@@ -16,3 +16,7 @@ async function bootstrap() {
   });
 }
 bootstrap();
+
+// list sv: netstat -ano|findstr "PID :3000"
+// kill process: taskkill /pid 18264 /f
+

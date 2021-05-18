@@ -1,18 +1,26 @@
 import { getConnection } from 'typeorm';
+import { ApiResultCode } from './CommonData';
 
 export class CommonDb {
   public static async GetData(query: string) {
-    const db = getConnection().query(query);
-
     var DtRs = [];
-
-    db.then((dt) => {
-      console.log(dt);
+    const db = getConnection().query(query);
+    await db.then((dt) => {
       dt.forEach((item) => {
-        console.log(item);
         DtRs.push(item);
       });
-      return DtRs;
-    }).finally(() => {});
+    })
+    return DtRs;
+  }
+
+  public static async SaveData(query: string){
+    const db = getConnection().query(query);
+    var status: number;
+    await db.then(()=>{
+      status = ApiResultCode.Success;
+    }).catch(()=>{
+      status = ApiResultCode.Error;
+    });
+    return status;
   }
 }

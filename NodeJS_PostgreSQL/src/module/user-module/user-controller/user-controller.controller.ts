@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from '../user-service';
-import { UserReqDto } from '../../../models/UserModel.dto';
+import * as bcrypt from 'bcrypt';
 import { CommonDb } from 'src/common/CommonDb';
 
 @Controller('user')
@@ -12,15 +12,25 @@ export class UserControllerController {
     return 'get user';
   }
 
-  @Post('post')
-  async postUser(@Body() req: UserReqDto) {
-    console.log('3');
-
+  @Post('danh-sach')
+  async postUser(@Body() req: any) {
     var dt = await this.service.getUser(req);
-    console.log('4');
+    return dt;
+  }
 
-    console.log(dt);
+  @Post('register')
+  async register(@Body() req: any){
+    const pass = await bcrypt.hash(req.PASSWORD, 10);
 
+    return await this.service.registerUser({
+      name: req.NAME,
+      pass: pass
+    });
+  }
+
+  @Post('login')
+  async login(@Body() req: any) {
+    var dt = await this.service.getUser(req);
     return dt;
   }
 }
