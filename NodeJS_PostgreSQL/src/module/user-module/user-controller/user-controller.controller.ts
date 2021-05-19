@@ -30,7 +30,10 @@ export class UserControllerController {
 
   @Post('login')
   async login(@Body() req: any) {
-    var dt = await this.service.getUser(req);
+    var dt = await this.service.login({
+      name: req.NAME,
+      pass: req.PASSWORD
+    });
     return dt;
   }
 }
