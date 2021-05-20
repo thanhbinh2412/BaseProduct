@@ -14,6 +14,8 @@ export class UserControllerController {
 
   @Post('danh-sach')
   async postUser(@Body() req: any) {
+    console.log(req.USER);
+    
     var dt = await this.service.getUser(req);
     return dt;
   }

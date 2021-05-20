@@ -11,6 +11,7 @@ import { generate } from 'rand-token'
 @Injectable()
 export class UserService {
   async getUser(dtReq: any) {
+    
     const query = `SELECT id, name, password, "refreshToken" FROM public."user";`;
     var dt = await CommonDb.GetData(query);
     return dt;
@@ -60,7 +61,7 @@ export class UserService {
       code = ApiResultCode.Error
     } else {
       // khởi tạo token
-      const accessTokenLife = "10m";
+      const accessTokenLife = "1m";
       const accessTokenSecret = "Access_Token_Secret_#$%_ExpressJS_Authentication";
       const dataForAccessToken = {
         username: isUser[0].id,
